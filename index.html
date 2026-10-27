@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DigitalDrumm · Client Portal · Lough Leane Composites (sample)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--ink:#064C39;--em:#059467;--mint:#F2FDF5;--mint2:#E3F7EA;--muted:#366357;--line:rgba(6,76,57,.12);--card:#fff;--amber:#C98A1B;--clay:#B5553C;--r:12px}
+*{box-sizing:border-box}body{margin:0;font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--mint);font-size:15px;line-height:1.5}
+h1,h2,h3{font-family:Merriweather,Georgia,serif;font-weight:600;margin:0}
+.mono{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.app{display:flex;min-height:100vh}
+aside{width:264px;flex-shrink:0;background:var(--ink);color:#F0FDF4;padding:26px 18px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.brand{font-family:Merriweather,serif;font-weight:700;font-size:21px;letter-spacing:-.01em}.brand span{color:#6EE7B7}
+.client{margin:22px 0 18px;padding:14px;border:1px solid rgba(240,253,244,.15);border-radius:var(--r);background:rgba(255,255,255,.04)}
+.client b{display:block;font-family:Merriweather,serif;font-size:14px}.client small{opacity:.7;font-size:12.5px}
+aside .mono{color:rgba(240,253,244,.55);margin:8px 10px}
+nav button{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;color:rgba(240,253,244,.8);font-weight:600;margin:2px 0}
+nav button:hover{background:rgba(255,255,255,.06)}nav button.on{background:#F0FDF4;color:var(--ink)}
+.num{font-family:"JetBrains Mono";font-size:11px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;border:1px solid currentColor;opacity:.8}
+.st{margin-left:auto;font-size:10px;font-family:"JetBrains Mono";padding:2px 7px;border-radius:99px;background:rgba(110,231,183,.18);color:#A7F3D0}
+nav button.on .st{background:var(--mint2);color:var(--em)}
+.side-foot{margin-top:auto}.side-foot p{font-size:12.5px;opacity:.7;margin:10px 2px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--em);color:#fff;text-decoration:none;font-weight:600;padding:10px 20px;border-radius:9999px;border:0}
+.btn:hover{background:#047857}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+main{flex:1;min-width:0;padding:28px 40px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.tag{display:inline-block;font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:#FFF7E6;color:#8A5A00;border:1px solid #F3D9A4}
+.hero h1{font-size:34px;line-height:1.2;margin:8px 0 8px}.hero p{color:var(--muted);max-width:760px;margin:0 0 22px;font-size:16.5px}
+.grid{display:grid;gap:16px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 1px 2px rgba(6,76,57,.04)}
+.card h3{font-size:16px;margin-bottom:4px}.card .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+.kpi .v{font-family:Merriweather,serif;font-size:30px;font-weight:700;margin:6px 0 2px}.kpi .d{font-size:13px;color:var(--em);font-weight:600}.kpi .d.n{color:var(--muted);font-weight:400}
+.ch{position:relative;height:240px}.insight{margin-top:12px;padding:10px 12px;background:var(--mint);border-left:3px solid var(--em);border-radius:6px;font-size:13.5px}
+section.view{display:none}section.view.on{display:block;animation:f .3s}@keyframes f{from{opacity:0;transform:translateY(6px)}}
+.sec{margin:30px 0 14px}.sec h2{font-size:21px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}td{padding:10px;border-bottom:1px solid var(--line)}
+.tw{overflow-x:auto}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:99px;margin:1px}
+.P{background:#E3F7EA;color:#047857}.C{background:#FDF1E3;color:#9A5B13}.E{background:#E6F1F5;color:#1E5B73}.T{background:#EEF0E2;color:#5A6121}.F{background:#F6E9E5;color:#8E3F2B}
+.b-pro{background:var(--ink);color:#F0FDF4}.b-ai{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.hi{color:var(--clay);font-weight:600}.md{color:var(--amber);font-weight:600}.lo{color:var(--em);font-weight:600}
+blockquote{margin:0;font-family:Merriweather,serif;font-size:15px;line-height:1.6}blockquote+cite{display:block;margin-top:10px;font-style:normal;font-size:13px;color:var(--muted)}
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;row-gap:12px}
+.step{flex:1;min-width:120px;background:var(--mint);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;position:relative}
+.step b{display:block;font-size:13.5px}.step small{color:var(--muted)}.step.pain{background:#FBEFEB;border-color:#EBC3B7}.step.auto{background:#E3F7EA;border-color:#9ADBB9}
+.arr{display:grid;place-items:center;width:22px;color:var(--muted);flex-shrink:0}
+.lane{font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.arch{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.layer{border:1px dashed rgba(6,76,57,.25);border-radius:var(--r);padding:14px}.layer .mono{margin-bottom:10px}
+.tool{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:8px;font-size:13.5px}
+.tool i{font-style:normal;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:"JetBrains Mono";font-size:11px;font-weight:500;color:#fff;flex-shrink:0}
+.tool small{display:block;color:var(--muted);font-size:12px}
+.bar{height:8px;background:var(--mint2);border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--em);border-radius:99px}
+.kan{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.col{background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.tk{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:8px;font-size:13.5px}.tk small{color:var(--muted)}
+.cta{margin-top:34px;background:var(--ink);color:#F0FDF4;border-radius:16px;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.cta h2{font-size:22px}.cta p{opacity:.8;margin:6px 0 0}
+.ok{color:var(--em);font-weight:700}.wa{color:var(--amber);font-weight:700}
+.mtop{display:none}
+@media(max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.arch,.kan{grid-template-columns:1fr 1fr}}
+@media(max-width:780px){.app{display:block}aside{position:sticky;z-index:5;height:auto;width:100%;padding:12px 14px}.client,.side-foot,aside>.mono{display:none}
+nav{display:flex;overflow-x:auto;gap:4px;margin-top:10px}nav button{width:auto;white-space:nowrap;padding:8px 12px}.st{display:none}
+main{padding:20px 16px 40px}.g4,.g3,.g2,.arch,.kan{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.hero h1{font-size:25px}.kpi .v{font-size:23px}.arr{transform:rotate(90deg);width:100%;height:18px}.flow{flex-direction:column}}
+</style></head><body><div class="app">
+<aside><div class="brand">Digital<span>Drumm</span></div>
+<div class="client"><span class="mono" style="color:rgba(240,253,244,.55);margin:0">Client portal</span><b>Lough Leane Composites Ltd</b><small>Killarney, Co. Kerry · 250 staff · 3 sites</small></div>
+<div class="mono">Engagement</div>
+<nav id="nav">
+<button data-v="overview" class="on"><span class="num">◎</span>Overview</button>
+<button data-v="discovery"><span class="num">01</span>Discovery<span class="st">Done</span></button>
+<button data-v="design"><span class="num">02</span>Design<span class="st">Done</span></button>
+<button data-v="develop"><span class="num">03</span>Develop<span class="st">Live</span></button>
+<button data-v="deploy"><span class="num">04</span>Deploy<span class="st">Next</span></button>
+</nav>
+<div class="side-foot"><p>Your consultant: Shane Drumm<br>Week 9 of 14 · Updated 27 Oct 2026</p><a class="btn" href="[BOOKING_LINK]">Book a discovery call ↗</a></div></aside>
+<main>
+<div class="top"><div><span class="mono">AI &amp; automation programme · Microsoft 365 + Business Central</span></div><span class="tag">Sample data · fictional company</span></div>
+
+<!-- OVERVIEW -->
+<section class="view on" id="overview">
+<div class="hero"><span class="mono">Overview</span><h1>3,120 hours a year back to the people who make the product.</h1><p>Lough Leane Composites makes rotomoulded tanks, wastewater treatment units and drainage products across Killarney, Farranfore and a Midlands depot. Here's where the time goes, what we're fixing first, and what it's worth.</p></div>
+<div class="grid g4">
+<div class="card kpi"><div class="mono">Manual hours / year</div><div class="v">8,640</div><div class="d n">Across 6 departments, from discovery</div></div>
+<div class="card kpi"><div class="mono">Target hours saved</div><div class="v">3,120</div><div class="d">36% of manual effort</div></div>
+<div class="card kpi"><div class="mono">Projected annual value</div><div class="v">€118k</div><div class="d">at €38/hr loaded cost</div></div>
+<div class="card kpi"><div class="mono">Pilot investment</div><div class="v">€6,500</div><div class="d">Payback in ~3 weeks of savings</div></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>Manual hours by department</h3><div class="sub">Hours per year spent on repetitive admin</div><div class="ch"><canvas id="c1"></canvas></div><div class="insight">Sales Order Processing and Finance account for <b>58%</b> of all manual effort. That's where we start.</div></div>
+<div class="card"><h3>Opportunity pipeline by value category</h3><div class="sub">Annual value, €k, across 12 opportunities</div><div class="ch"><canvas id="c2"></canvas></div><div class="insight">Productivity and Cost wins fund the Transformation bets later in the roadmap.</div></div>
+<div class="card"><h3>Projected vs realised hours saved</h3><div class="sub">Cumulative hours, Nov 2026 – Oct 2027</div><div class="ch"><canvas id="c3"></canvas></div><div class="insight">The first two automations went live in week 8 and are <b>8% ahead</b> of projection.</div></div>
+<div class="card"><h3>Automation backlog: effort vs impact</h3><div class="sub">Bubble size = annual hours saved</div><div class="ch"><canvas id="c4"></canvas></div><div class="insight">Four quick wins sit top-left: high impact, under 10 days to build.</div></div>
+<div class="card"><h3>Phase progress</h3><div class="sub">% complete per phase</div><div class="ch"><canvas id="c5"></canvas></div></div>
+<div class="card"><h3>Where the hours come back</h3><div class="sub">Target hours saved by build type</div><div class="ch"><canvas id="c6"></canvas></div><div class="insight">Two-thirds of savings (2,060 hrs) come from AI Builder and Copilot Studio models on document-heavy work. Power Automate prototypes deliver the other 1,060.</div></div>
+</div>
+<div class="cta"><div><h2>Want this picture for your business?</h2><p>A 30-minute call is enough to tell whether there are hours worth finding.</p></div><a class="btn" href="[BOOKING_LINK]">Book a discovery call ↗</a></div>
+</section>
+
+<!-- DISCOVERY -->
+<section class="view" id="discovery">
+<div class="hero"><span class="mono">Phase 01 · Discovery · Weeks 1–3</span><h1>What we found on the factory floor and in the back office.</h1><p>14 interviews, 3 site visits, and 6 weeks of Business Central and mailbox data. We mapped 23 processes and costed every one.</p></div>
+<div class="grid g4"><div class="card kpi"><div class="mono">Processes mapped</div><div class="v">23</div></div><div class="card kpi"><div class="mono">Interviews</div><div class="v">14</div></div><div class="card kpi"><div class="mono">Re-keying hotspots</div><div class="v">9</div></div><div class="card kpi"><div class="mono">Spreadsheets in use</div><div class="v">61</div></div></div>
+<div class="sec"><span class="mono">Process inventory</span><h2>The top eight processes by manual effort</h2></div>
+<div class="card tw"><table><tr><th>Process</th><th>Dept</th><th>Hrs/yr</th><th>Volume</th><th>Pain</th></tr>
+<tr><td>Sales order entry from email/PDF</td><td>Sales Ops</td><td>1,980</td><td>~420 orders/mo</td><td class="hi">High</td></tr>
+<tr><td>Supplier invoice matching (3-way)</td><td>Finance</td><td>1,420</td><td>~900 invoices/mo</td><td class="hi">High</td></tr>
+<tr><td>Delivery scheduling &amp; haulier booking</td><td>Logistics</td><td>1,150</td><td>~260 loads/mo</td><td class="hi">High</td></tr>
+<tr><td>Month-end reporting pack</td><td>Finance</td><td>860</td><td>12 packs/yr</td><td class="md">Medium</td></tr>
+<tr><td>Quality non-conformance logging</td><td>Quality</td><td>780</td><td>~70 NCRs/mo</td><td class="md">Medium</td></tr>
+<tr><td>Installer &amp; merchant quote requests</td><td>Sales Ops</td><td>720</td><td>~300 quotes/mo</td><td class="md">Medium</td></tr>
+<tr><td>Timesheet &amp; shift reconciliation</td><td>HR</td><td>640</td><td>250 staff weekly</td><td class="md">Medium</td></tr>
+<tr><td>Warranty claim handling</td><td>Customer Service</td><td>480</td><td>~40 claims/mo</td><td class="lo">Low</td></tr></table></div>
+<div class="sec"><span class="mono">Current-state map</span><h2>Order-to-delivery today</h2></div>
+<div class="card"><div class="lane">Sales Ops</div><div class="flow">
+<div class="step"><b>Order arrives</b><small>Email, PDF, phone</small></div><div class="arr">→</div>
+<div class="step pain"><b>Re-key into BC</b><small>11 min avg · 4% error</small></div><div class="arr">→</div>
+<div class="step pain"><b>Check stock</b><small>Spreadsheet + call to yard</small></div><div class="arr">→</div>
+<div class="step"><b>Confirm by email</b><small>Manual template</small></div></div>
+<div class="lane">Logistics</div><div class="flow">
+<div class="step pain"><b>Build load plan</b><small>Whiteboard + Excel</small></div><div class="arr">→</div>
+<div class="step pain"><b>Book haulier</b><small>Phone / email · 3 hauliers</small></div><div class="arr">→</div>
+<div class="step"><b>Dispatch</b><small>Paper docket</small></div><div class="arr">→</div>
+<div class="step pain"><b>POD back to office</b><small>Scanned 2–5 days later</small></div></div>
+<p class="sub" style="margin:14px 0 0">Red steps are manual hand-offs. Order-to-confirmation averages <b>26 hours</b>.</p></div>
+<div class="sec"><span class="mono">Pain points &amp; voices</span><h2>What the team told us</h2></div>
+<div class="grid g3">
+<div class="card"><blockquote>"Half my morning is copying merchant orders out of PDFs into Business Central. Then I check them all again."</blockquote><cite>Sales order administrator, Killarney</cite></div>
+<div class="card"><blockquote>"In spring, when septic tank season kicks off, we're ringing hauliers until seven in the evening."</blockquote><cite>Logistics coordinator, Farranfore</cite></div>
+<div class="card"><blockquote>"Month-end is four days of exporting, pasting and reconciling. The numbers are right, but they're late."</blockquote><cite>Financial controller</cite></div>
+</div></section>
+
+<!-- DESIGN -->
+<section class="view" id="design">
+<div class="hero"><span class="mono">Phase 02 · Design · Weeks 4–6</span><h1>The future state, built on the tools you already pay for.</h1><p>No new platforms. Everything runs inside your Microsoft 365 tenant and Business Central, so IT keeps control and staff stay in Teams and Outlook.</p></div>
+<div class="sec"><span class="mono">To-be process</span><h2>Order-to-delivery: before and after</h2></div>
+<div class="grid g2"><div class="card"><h3>Before</h3><div class="sub">8 steps · 5 manual hand-offs · 26 hrs to confirm</div><div class="flow">
+<div class="step">Order email</div><div class="arr">→</div><div class="step pain">Re-key</div><div class="arr">→</div><div class="step pain">Stock check</div><div class="arr">→</div><div class="step pain">Haulier calls</div></div></div>
+<div class="card"><h3>After</h3><div class="sub">5 steps · 1 human approval · under 2 hrs to confirm</div><div class="flow">
+<div class="step auto">AI reads order</div><div class="arr">→</div><div class="step auto">Draft SO in BC</div><div class="arr">→</div><div class="step">Approve in Teams</div><div class="arr">→</div><div class="step auto">Auto-confirm &amp; book</div></div></div></div>
+<div class="sec"><span class="mono">Solution architecture</span><h2>How the pieces connect</h2></div>
+<div class="card"><div class="arch">
+<div class="layer"><div class="mono">Capture &amp; people</div>
+<div class="tool"><i style="background:#2E5E8C">Tm</i><div>Teams<small>Approvals, alerts, Copilot chat</small></div></div>
+<div class="tool"><i style="background:#1F7A6E">SP</i><div>SharePoint<small>Order inbox, PODs, NCR photos</small></div></div>
+<div class="tool"><i style="background:#5A6121">CS</i><div>Copilot Studio<small>Quote &amp; order-status agent</small></div></div></div>
+<div class="layer"><div class="mono">Automate &amp; understand</div>
+<div class="tool"><i style="background:#3D6FA8">PA</i><div>Power Automate<small>12 flows, orchestration</small></div></div>
+<div class="tool"><i style="background:#059467">AI</i><div>AI Builder<small>Order &amp; invoice extraction models</small></div></div></div>
+<div class="layer"><div class="mono">Record &amp; report</div>
+<div class="tool"><i style="background:#064C39">BC</i><div>Business Central<small>System of record, via API</small></div></div>
+<div class="tool"><i style="background:#C98A1B">BI</i><div>Power BI<small>Ops &amp; month-end dashboards</small></div></div></div>
+</div><p class="sub" style="margin:10px 0 0">Badges are illustrative, not official product logos. All data stays in the client's M365 tenant (EU region).</p></div>
+<div class="sec"><span class="mono">Prioritised opportunities</span><h2>The roadmap, ranked by value and effort</h2></div>
+<div class="card tw"><table><tr><th>#</th><th>Opportunity</th><th>Value category</th><th>Build</th><th>Hrs/yr saved</th><th>Effort</th></tr>
+<tr><td>1</td><td>AI sales-order intake to BC</td><td><span class="pill P">Productivity</span><span class="pill E">Efficiency</span></td><td><span class="pill b-ai">AI Model</span></td><td>1,180</td><td>8 days</td></tr>
+<tr><td>2</td><td>Supplier invoice 3-way match</td><td><span class="pill C">Cost</span><span class="pill P">Productivity</span></td><td><span class="pill b-ai">AI Model</span></td><td>760</td><td>9 days</td></tr>
+<tr><td>3</td><td>Haulier booking &amp; load planning</td><td><span class="pill E">Efficiency</span><span class="pill F">Performance</span></td><td><span class="pill b-pro">Prototype</span></td><td>520</td><td>12 days</td></tr>
+<tr><td>4</td><td>Automated month-end pack</td><td><span class="pill F">Performance</span></td><td><span class="pill b-pro">Prototype</span></td><td>340</td><td>6 days</td></tr>
+<tr><td>5</td><td>NCR capture from Teams with photos</td><td><span class="pill E">Efficiency</span></td><td><span class="pill b-pro">Prototype</span></td><td>200</td><td>4 days</td></tr>
+<tr><td>6</td><td>Merchant quote &amp; status agent</td><td><span class="pill T">Transformation</span></td><td><span class="pill b-ai">AI Model</span></td><td>120</td><td>15 days</td></tr></table>
+<p class="sub" style="margin:12px 0 0">Items 1–6 total <b>3,120 hrs/yr</b>. Six more ideas are parked for phase 2.</p></div>
+</section>
+
+<!-- DEVELOP -->
+<section class="view" id="develop">
+<div class="hero"><span class="mono">Phase 03 · Develop · Weeks 7–11</span><h1>Working software every fortnight, tested on real orders.</h1><p>Two-week sprints, a demo every Friday, and Lough Leane staff testing in a BC sandbox before anything goes near production.</p></div>
+<div class="grid g4"><div class="card kpi"><div class="mono">Sprint</div><div class="v">2 of 3</div></div><div class="card kpi"><div class="mono">Flows built</div><div class="v">7 / 12</div></div><div class="card kpi"><div class="mono">Test pass rate</div><div class="v">94%</div></div><div class="card kpi"><div class="mono">Extraction accuracy</div><div class="v">96.8%</div><div class="d">target 95%</div></div></div>
+<div class="sec"><span class="mono">Build tracker</span><h2>Sprint 2 board</h2></div>
+<div class="kan">
+<div class="col"><div class="mono">Backlog</div><div class="tk">Merchant quote agent<br><small>Copilot Studio · Sprint 3</small></div><div class="tk">NCR Teams form<br><small>Power Automate</small></div></div>
+<div class="col"><div class="mono">In build</div><div class="tk">Haulier booking flow<br><small>60% · 3 hauliers connected</small><div class="bar" style="margin-top:6px"><span style="width:60%"></span></div></div><div class="tk">Month-end Power BI pack<br><small>45%</small><div class="bar" style="margin-top:6px"><span style="width:45%"></span></div></div></div>
+<div class="col"><div class="mono">In test</div><div class="tk">Invoice 3-way match<br><small>UAT with Finance · 212 invoices</small></div></div>
+<div class="col"><div class="mono">Live</div><div class="tk">Sales-order intake (AI)<br><small>Live since week 8</small></div><div class="tk">Order confirmation emails<br><small>Live since week 8</small></div></div></div>
+<div class="sec"><span class="mono">Prototypes in progress</span><h2>What you can click today</h2></div>
+<div class="grid g3">
+<div class="card"><h3>Order Intake Assistant</h3><div class="sub">AI Builder + Power Automate → BC</div><div class="bar"><span style="width:100%"></span></div><p class="sub" style="margin-top:10px">Reads merchant PDFs, drafts sales orders, and sends exceptions to Teams for approval.</p></div>
+<div class="card"><h3>Invoice Matcher</h3><div class="sub">AI Builder + BC purchase receipts</div><div class="bar"><span style="width:80%"></span></div><p class="sub" style="margin-top:10px">Auto-matches invoice, PO and GRN. Only variances over €50 go to a person.</p></div>
+<div class="card"><h3>Load Planner</h3><div class="sub">Power Automate + SharePoint + Teams</div><div class="bar"><span style="width:60%"></span></div><p class="sub" style="margin-top:10px">Groups tank and drainage orders by route and requests haulier slots by email.</p></div></div>
+<div class="sec"><span class="mono">Test results</span><h2>UAT so far</h2></div>
+<div class="card tw"><table><tr><th>Scenario</th><th>Cases</th><th>Passed</th><th>Result</th></tr>
+<tr><td>Standard merchant PDF order</td><td>180</td><td>176</td><td class="ok">98%</td></tr>
+<tr><td>Handwritten / scanned order</td><td>40</td><td>35</td><td class="wa">88% · retraining</td></tr>
+<tr><td>Invoice match, exact</td><td>150</td><td>148</td><td class="ok">99%</td></tr>
+<tr><td>Invoice match, part-delivery</td><td>62</td><td>55</td><td class="wa">89% · rule fix in sprint 3</td></tr>
+<tr><td>Teams approval round-trip</td><td>50</td><td>50</td><td class="ok">100%</td></tr></table></div>
+</section>
+
+<!-- DEPLOY -->
+<section class="view" id="deploy">
+<div class="hero"><span class="mono">Phase 04 · Deploy · Weeks 12–14</span><h1>Rolled out site by site, with people trained first.</h1><p>Killarney goes live first, then Farranfore and the Midlands depot. Every user gets hands-on training and a named champion.</p></div>
+<div class="grid g4"><div class="card kpi"><div class="mono">Active users</div><div class="v">38 / 46</div><div class="d">83% adoption</div></div><div class="card kpi"><div class="mono">Orders auto-processed</div><div class="v">71%</div><div class="d">target 70%</div></div><div class="card kpi"><div class="mono">Hours saved to date</div><div class="v">412</div><div class="d">vs 380 projected</div></div><div class="card kpi"><div class="mono">Order-to-confirm</div><div class="v">1.8 hrs</div><div class="d">was 26 hrs</div></div></div>
+<div class="sec"><span class="mono">Rollout plan</span><h2>Three sites, three waves</h2></div>
+<div class="card tw"><table><tr><th>Wave</th><th>Site</th><th>Scope</th><th>Go-live</th><th>Status</th></tr>
+<tr><td>1</td><td>Killarney HQ &amp; plant</td><td>Order intake, confirmations</td><td>16 Oct 2026</td><td class="ok">Live</td></tr>
+<tr><td>2</td><td>Killarney Finance</td><td>Invoice matching, month-end pack</td><td>13 Nov 2026</td><td class="wa">Scheduled</td></tr>
+<tr><td>3</td><td>Farranfore &amp; Midlands depot</td><td>Load planner, NCR capture</td><td>4 Dec 2026</td><td class="wa">Scheduled</td></tr></table></div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>Realised vs projected hours saved</h3><div class="sub">Weekly, since go-live</div><div class="ch"><canvas id="c7"></canvas></div></div>
+<div class="card"><h3>Adoption by team</h3><div class="sub">% of licensed users active weekly</div><div class="ch"><canvas id="c8"></canvas></div></div></div>
+<div class="sec"><span class="mono">Next phase</span><h2>What we recommend next</h2></div>
+<div class="grid g3">
+<div class="card"><span class="pill T">Transformation</span><h3 style="margin-top:8px">Merchant self-service agent</h3><p class="sub">A Copilot Studio agent that answers order status and lead times for installers. Estimated 600 hrs/yr.</p></div>
+<div class="card"><span class="pill F">Performance</span><h3 style="margin-top:8px">Demand forecasting for tank season</h3><p class="sub">Use BC sales history to plan moulding capacity before the spring peak.</p></div>
+<div class="card"><span class="pill P">Productivity</span><h3 style="margin-top:8px">Copilot for M365 enablement</h3><p class="sub">Training for 40 office staff on drafting, summarising and searching across Teams and Outlook.</p></div></div>
+<div class="cta"><div><h2>Start with a pilot, not a programme.</h2><p>Fixed-price pilots from €4–8k. No setup fees. Working automation in weeks.</p></div><a class="btn" href="[BOOKING_LINK]">Book a discovery call ↗</a></div>
+</section>
+<p class="sub" style="margin-top:30px;font-size:12px">Lough Leane Composites Ltd is a fictional company. All figures are illustrative sample data. © 2026 DigitalDrumm.</p>
+</main></div>
+<script>
+const nav=document.getElementById('nav');nav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;nav.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===b.dataset.v));history.replaceState(null,'','#'+b.dataset.v);window.scrollTo(0,0)});
+const h=location.hash.slice(1);if(h){const b=nav.querySelector(`[data-v="${h}"]`);b&&b.click()}
+if(window.Chart){const G='#059467',I='#064C39',A='#C98A1B',M='#9ADBB9',CL='#B5553C',BL='#1E5B73';
+Chart.defaults.font.family='"Source Sans 3",sans-serif';Chart.defaults.color='#366357';Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.maintainAspectRatio=false;
+const g={grid:{color:'rgba(6,76,57,.07)'}};
+new Chart(c1,{type:'bar',data:{labels:['Sales Ops','Finance','Logistics','Quality','HR','Cust. Service'],datasets:[{data:[2700,2280,1150,780,640,1090],backgroundColor:[I,I,G,M,M,M],borderRadius:6}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:g,y:{grid:{display:false}}}}});
+new Chart(c2,{type:'doughnut',data:{labels:['Productivity','Cost','Efficiency','Performance','Transformation'],datasets:[{data:[42,29,24,14,9],backgroundColor:[I,A,G,BL,'#5A6121'],borderWidth:2}]},options:{cutout:'62%',plugins:{legend:{position:'right'}}}});
+const mo=['Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'];
+new Chart(c3,{type:'line',data:{labels:mo,datasets:[{label:'Projected',data:[150,380,640,900,1160,1420,1680,1940,2200,2460,2780,3120],borderColor:I,borderDash:[5,4],pointRadius:0,tension:.3},{label:'Realised',data:[162,412],borderColor:G,backgroundColor:'rgba(5,148,103,.12)',fill:true,tension:.3}]},options:{scales:{x:{grid:{display:false}},y:g}}});
+new Chart(c4,{type:'bubble',data:{datasets:[{label:'Quick wins',data:[{x:8,y:9,r:17},{x:9,y:8,r:14},{x:6,y:6,r:9},{x:4,y:5,r:7}],backgroundColor:'rgba(5,148,103,.6)'},{label:'Strategic',data:[{x:12,y:7,r:12},{x:15,y:6,r:6}],backgroundColor:'rgba(201,138,27,.6)'},{label:'Parked',data:[{x:18,y:3,r:6},{x:14,y:2,r:5},{x:20,y:4,r:7}],backgroundColor:'rgba(181,85,60,.45)'}]},options:{scales:{x:{...g,title:{display:true,text:'Effort (days)'},min:0,max:22},y:{...g,title:{display:true,text:'Impact'},min:0,max:10}}}});
+new Chart(c5,{type:'bar',data:{labels:['Discovery','Design','Develop','Deploy'],datasets:[{data:[100,100,62,25],backgroundColor:[I,I,G,M],borderRadius:6}]},options:{plugins:{legend:{display:false}},scales:{y:{...g,max:100},x:{grid:{display:false}}}}});
+new Chart(c6,{type:'pie',data:{labels:['Prototype (Power Automate)','AI Model (AI Builder / Copilot Studio)'],datasets:[{data:[1060,2060],backgroundColor:[I,G],borderWidth:2}]},options:{plugins:{legend:{position:'bottom'}}}});
+new Chart(c7,{type:'bar',data:{labels:['W1','W2','W3','W4','W5','W6'],datasets:[{label:'Realised',data:[48,62,70,74,78,80],backgroundColor:G,borderRadius:5},{label:'Projected',data:[55,60,64,66,67,68],type:'line',borderColor:I,borderDash:[5,4],pointRadius:0}]},options:{scales:{x:{grid:{display:false}},y:g}}});
+new Chart(c8,{type:'bar',data:{labels:['Sales Ops','Finance','Logistics','Quality','Cust. Service'],datasets:[{data:[100,86,72,67,80],backgroundColor:[I,G,G,M,G],borderRadius:6}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{...g,max:100},y:{grid:{display:false}}}}});}
+</script></body></html>
